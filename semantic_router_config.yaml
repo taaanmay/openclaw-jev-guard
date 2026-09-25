@@ -1,0 +1,22 @@
+# vLLM Semantic Router Configuration - Jev Only
+# Testing Jev model from OpenRouter
+
+routes:
+  - name: "default"
+    model: "jev"
+    description: "Route all queries to Jev"
+
+models:
+  jev:
+    provider: "openrouter"
+    name: "typesafe/jev-1.13"
+    temperature: 0.7
+    max_tokens: 2048
+
+signals:
+  - type: "complexity_scoring"
+    description: "Score query complexity (1-10)"
+
+policies:
+  - type: "rate_limiting"
+    max_requests_per_minute: 100
